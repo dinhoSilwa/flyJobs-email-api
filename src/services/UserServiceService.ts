@@ -7,7 +7,7 @@ export class UserService {
     this.serviceRepository = serviceRepository;
   }
 
-  public async sendServiceEmail(service: IUserService): Promise<void | Error> {
-     await this.serviceRepository.sendEmailService(service);
+  public async sendServiceEmail(service: IUserService): Promise<void> {
+    await this.serviceRepository.sendEmailService(service);
   }
 }
