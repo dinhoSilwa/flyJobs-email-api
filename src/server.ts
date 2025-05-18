@@ -1,7 +1,8 @@
 import { config } from "dotenv";
-import { app } from "../src/app";
-const { PORT } = process.env;
+import { app } from "./app";
 config();
+
+const { PORT } = process.env;
 export const startServer = () => {
   try {
     app.listen(3000, () => {
