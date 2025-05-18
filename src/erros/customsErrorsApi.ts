@@ -21,13 +21,13 @@ export class InvalidRecipient extends CustomApiError {
 }
 
 export class NotFoundNodemailer extends CustomApiError {
-  constructor(message : string){
-    super(message, httpStatusCode.NOT_FOUND)
+  constructor(message: string) {
+    super(message, httpStatusCode.UNAUTHORIZED);
   }
 }
 
-export class NotFoundResend extends CustomApiError {
-  constructor(message : string){
-    super(message, httpStatusCode.NOT_FOUND)
+export class RateExpires extends CustomApiError {
+  constructor(message: string) {
+    super(message, httpStatusCode.UNAUTHORIZED);
   }
 }
