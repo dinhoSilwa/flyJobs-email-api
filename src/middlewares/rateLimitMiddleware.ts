@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import rateLimit, { Options } from "express-rate-limit";
+import { RateExpires } from "../erros/customsErrorsApi";
 
-const createRateLimitMiddleware = (
+export const createRateLimitMiddleware = (
   windowMs: number,
   max: number,
   message: string
@@ -17,7 +18,7 @@ const createRateLimitMiddleware = (
       next: NextFunction,
       options: Options
     ) => {
-      next(new Error(message));
+      next(new RateExpires(message));
     },
   });
 };
