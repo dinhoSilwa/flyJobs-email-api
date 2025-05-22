@@ -1,16 +1,15 @@
 import { ErrorRequestHandler, Request, Response, NextFunction } from "express";
 import { CustomApiError, NotFoundNodemailer } from "../erros/customsErrorsApi";
-import { httpStatusCode } from "../httpStatus/httpStatusCode";
 
 export const ErrorHandlerMiddleware: ErrorRequestHandler = (
   error: Error & CustomApiError,
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): any => {
   const statusCode = error.statusCode || 500;
   if (error instanceof NotFoundNodemailer) {
-    res.status(error.statusCode).json({
+    return res.status(error.statusCode).json({
       success: false,
       error: {
         code: error.statusCode,
@@ -19,7 +18,7 @@ export const ErrorHandlerMiddleware: ErrorRequestHandler = (
       },
     });
   }
-  
+
   const response = {
     success: false,
     error: {
@@ -28,5 +27,5 @@ export const ErrorHandlerMiddleware: ErrorRequestHandler = (
       details: process.env.NODE_ENV === "development" ? error.stack : null,
     },
   };
-  res.status(statusCode).json(response);
+  return res.status(statusCode).json(response);
 };
