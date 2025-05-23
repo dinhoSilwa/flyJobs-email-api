@@ -8,7 +8,7 @@ export class UserContactController {
   static async startSendContactEmail(
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     await contact.senContactEmail(req.body);
     res

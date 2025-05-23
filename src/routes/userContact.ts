@@ -8,5 +8,5 @@ export const UserContactRouter = Router();
 UserContactRouter.post(
   "/send/contact",
   zodMiddleware(userContactSchema),
-  UserContactController.startSendContactEmail
+  UserContactController.startSendContactEmail,
 );

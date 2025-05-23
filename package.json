@@ -7,7 +7,9 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "start:dev": "nodemon",
-    "render": "pnpm run build && pnpm start"
+    "render": "pnpm run build && pnpm start",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
   "author": "",
@@ -30,6 +32,7 @@
     "@types/node": "^22.15.18",
     "@types/nodemailer": "^6.4.17",
     "nodemon": "^3.1.10",
+    "prettier": "^3.5.3",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }

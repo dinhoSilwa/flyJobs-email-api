@@ -7,5 +7,5 @@ export const userServiceRouter = Router();
 userServiceRouter.post(
   "/send/service",
   zodMiddleware(UserServiceSchema),
-  UserServiceController.startSendEmailService
+  UserServiceController.startSendEmailService,
 );

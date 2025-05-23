@@ -9,9 +9,9 @@ export const ErrorHandlerMiddleware: ErrorRequestHandler = (
   error: Error & CustomApiError,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): any => {
-  console.error(error)
+  console.error(error);
   const statusCode = error.statusCode || 500;
   if (error instanceof EmailError) {
     return res.status(error.statusCode).json({

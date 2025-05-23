@@ -9,7 +9,7 @@ export class UserServiceController {
   static async startSendEmailService(
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<void> {
     await service.sendServiceEmail(req.body);
     res

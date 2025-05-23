@@ -34,7 +34,10 @@ export class RateExpires extends CustomApiError {
 }
 
 export class ZodErrors extends CustomApiError {
-  constructor(public ErrorObject: ZodIssue[], message = `${ErrorObject}`) {
+  constructor(
+    public ErrorObject: ZodIssue[],
+    message = `${ErrorObject}`,
+  ) {
     super(message, httpStatusCode.UNAUTHORIZED);
   }
 }

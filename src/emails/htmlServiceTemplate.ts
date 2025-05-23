@@ -135,10 +135,10 @@ export const htmlServiceTemplate = (serviceEmail: IUserService) => {
                     <a href="https://wa.me/${
                       phone.startsWith("55") ? phone : `55${phone}`
                     }?text=Ol%C3%A1%20${encodeURIComponent(
-    username
-  )}%21%0APercebi%20que%20voc%C3%AA%20acessou%20nosso%20site%20e%20demonstrou%20interesse%20no%20servi%C3%A7o%20${encodeURIComponent(
-    selectedServiceType
-  )}.%0AVamos%20dar%20in%C3%ADcio%20ao%20seu%20atendimento%20e%20te%20ajudar%20a%20conquistar%20sua%20pr%C3%B3xima%20oportunidade%21" 
+                      username,
+                    )}%21%0APercebi%20que%20voc%C3%AA%20acessou%20nosso%20site%20e%20demonstrou%20interesse%20no%20servi%C3%A7o%20${encodeURIComponent(
+                      selectedServiceType,
+                    )}.%0AVamos%20dar%20in%C3%ADcio%20ao%20seu%20atendimento%20e%20te%20ajudar%20a%20conquistar%20sua%20pr%C3%B3xima%20oportunidade%21" 
                     class="phone-link">
                         ${phone}
                     </a>

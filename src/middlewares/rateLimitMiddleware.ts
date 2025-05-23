@@ -5,7 +5,7 @@ import { RateExpires } from "../erros/customsErrorsApi";
 export const createRateLimitMiddleware = (
   windowMs: number,
   max: number,
-  message: string
+  message: string,
 ) => {
   return rateLimit({
     windowMs,
@@ -16,7 +16,7 @@ export const createRateLimitMiddleware = (
       req: Request,
       res: Response,
       next: NextFunction,
-      options: Options
+      options: Options,
     ) => {
       next(new RateExpires(message));
     },
@@ -26,5 +26,5 @@ export const createRateLimitMiddleware = (
 export const serviceRateLimite = createRateLimitMiddleware(
   10 * 60 * 10000,
   5,
-  "Falha ao Requisitar Serviços"
+  "Falha ao Requisitar Serviços",
 );
