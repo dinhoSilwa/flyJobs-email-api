@@ -1,16 +1,16 @@
 import { IUserService } from "../@types/IUserService";
 import { IUserServiceRepository } from "../interfaces/IUserServiceRepository";
-import { NotFoundNodemailer } from "../erros/customsErrorsApi";
-import { createResendTransporter } from "../emails/resend";
+import { EmailError } from "../erros/customsErrorsApi";
+import { createUserServiceTransporter } from "../emails/serviceResend";
 
 export class UseServiceRepository
   implements IUserServiceRepository<IUserService>
 {
   async sendEmailService(serviceEmail: IUserService): Promise<any> {
     try {
-      await createResendTransporter(serviceEmail);
+      await createUserServiceTransporter(serviceEmail);
     } catch (err) {
-      throw new NotFoundNodemailer("Falha No Serviço do Nodemailer");
+      throw new EmailError("Falha No Serviço do Resend");
     }
   }
 }
