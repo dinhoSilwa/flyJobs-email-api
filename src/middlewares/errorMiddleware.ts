@@ -1,5 +1,9 @@
 import { ErrorRequestHandler, Request, Response, NextFunction } from "express";
-import { CustomApiError, NotFoundNodemailer } from "../erros/customsErrorsApi";
+import {
+  CustomApiError,
+  EmailError,
+  ZodErrors,
+} from "../erros/customsErrorsApi";
 
 export const ErrorHandlerMiddleware: ErrorRequestHandler = (
   error: Error & CustomApiError,
@@ -7,14 +11,25 @@ export const ErrorHandlerMiddleware: ErrorRequestHandler = (
   res: Response,
   next: NextFunction
 ): any => {
+  console.error(error)
   const statusCode = error.statusCode || 500;
-  if (error instanceof NotFoundNodemailer) {
+  if (error instanceof EmailError) {
     return res.status(error.statusCode).json({
       success: false,
       error: {
         code: error.statusCode,
         message: error.message,
         details: process.env.NODE_ENV === "development" ? error.stack : null,
+      },
+    });
+  }
+
+  if (error instanceof ZodErrors) {
+    return res.status(error.statusCode).json({
+      errors: {
+        status: error.statusCode,
+        message: "Campos Obrigatórios inválidos",
+        fields: error.ErrorObject,
       },
     });
   }
