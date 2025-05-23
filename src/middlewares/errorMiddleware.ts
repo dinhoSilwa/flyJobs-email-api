@@ -2,6 +2,7 @@ import { ErrorRequestHandler, Request, Response, NextFunction } from "express";
 import {
   CustomApiError,
   EmailError,
+  RateExpires,
   ZodErrors,
 } from "../erros/customsErrorsApi";
 
@@ -34,6 +35,14 @@ export const ErrorHandlerMiddleware: ErrorRequestHandler = (
     });
   }
 
+  if (error instanceof RateExpires) {
+    return res.status(error.statusCode).json({
+      errors: {
+        status: error.statusCode,
+        message: "Falha ao Solicitar Serviço, tente novamente mais tarde",
+      },
+    });
+  }
   const response = {
     success: false,
     error: {
