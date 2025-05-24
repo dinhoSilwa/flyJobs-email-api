@@ -9,6 +9,7 @@ import { ErrorHandlerMiddleware } from "./middlewares/errorMiddleware";
 import { UserContactRouter } from "./routes/userContact";
 export const app: Application = express();
 config();
+app.set("trust proxy", 1);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api", serviceRateLimite, userServiceRouter);
