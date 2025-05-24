@@ -1,8 +1,11 @@
 import { Router } from "express";
 import { UserServiceController } from "../controllers/UserServiceController";
+import { zodMiddleware } from "../middlewares/validateMiddleware";
+import { UserServiceSchema } from "../schema/UserServiceSchema";
 
 export const userServiceRouter = Router();
 userServiceRouter.post(
   "/send/service",
-  UserServiceController.startSendEmailService
+  zodMiddleware(UserServiceSchema),
+  UserServiceController.startSendEmailService,
 );

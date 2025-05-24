@@ -1,16 +1,21 @@
 import { ErrorRequestHandler, Request, Response, NextFunction } from "express";
-import { CustomApiError, NotFoundNodemailer } from "../erros/customsErrorsApi";
-import { httpStatusCode } from "../httpStatus/httpStatusCode";
+import {
+  CustomApiError,
+  EmailError,
+  RateExpires,
+  ZodErrors,
+} from "../erros/customsErrorsApi";
 
 export const ErrorHandlerMiddleware: ErrorRequestHandler = (
   error: Error & CustomApiError,
   req: Request,
   res: Response,
-  next: NextFunction
-) => {
+  next: NextFunction,
+): any => {
+  console.error(error);
   const statusCode = error.statusCode || 500;
-  if (error instanceof NotFoundNodemailer) {
-    res.status(error.statusCode).json({
+  if (error instanceof EmailError) {
+    return res.status(error.statusCode).json({
       success: false,
       error: {
         code: error.statusCode,
@@ -19,7 +24,25 @@ export const ErrorHandlerMiddleware: ErrorRequestHandler = (
       },
     });
   }
-  
+
+  if (error instanceof ZodErrors) {
+    return res.status(error.statusCode).json({
+      errors: {
+        status: error.statusCode,
+        message: "Campos Obrigatórios inválidos",
+        fields: error.ErrorObject,
+      },
+    });
+  }
+
+  if (error instanceof RateExpires) {
+    return res.status(error.statusCode).json({
+      errors: {
+        status: error.statusCode,
+        message: "Falha ao Solicitar Serviço, tente novamente mais tarde",
+      },
+    });
+  }
   const response = {
     success: false,
     error: {
@@ -28,5 +51,5 @@ export const ErrorHandlerMiddleware: ErrorRequestHandler = (
       details: process.env.NODE_ENV === "development" ? error.stack : null,
     },
   };
-  res.status(statusCode).json(response);
+  return res.status(statusCode).json(response);
 };
