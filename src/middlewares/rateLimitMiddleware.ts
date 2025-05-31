@@ -24,7 +24,7 @@ export const createRateLimitMiddleware = (
 };
 
 export const serviceRateLimite = createRateLimitMiddleware(
-  10 * 60 * 10000,
-  5,
+  10 * 60 * 1000,
+  50,
   "Falha ao Requisitar Serviços",
 );
