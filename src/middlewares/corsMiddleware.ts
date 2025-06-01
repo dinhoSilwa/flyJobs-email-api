@@ -1,7 +1,7 @@
 import { CorsOptions } from "cors";
 
 const allowedOrigins = [
-  "https://flyjobs-ten.vercel.app/",
+  "https://flyjobs-ten.vercel.app",
   "https://flyjobs-rh-consulting.vercel.app",
   "http://localhost:3000",
   "http://localhost:5173",
