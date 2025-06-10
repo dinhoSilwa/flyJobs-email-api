@@ -12,7 +12,7 @@ export class UserService {
     await this.serviceRepository.createService(service);
   }
 
-  public async getAllServices(): Promise<IUserService | []> {
+  public async getAllServices(): Promise<IUserService | any> {
     return await this.serviceRepository.getAllServices();
   }
 }
