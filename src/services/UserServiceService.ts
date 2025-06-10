@@ -9,5 +9,10 @@ export class UserService {
 
   public async sendServiceEmail(service: IUserService): Promise<void> {
     await this.serviceRepository.sendEmailService(service);
+    await this.serviceRepository.createService(service);
+  }
+
+  public async getAllServices(): Promise<IUserService | []> {
+    return await this.serviceRepository.getAllServices();
   }
 }
