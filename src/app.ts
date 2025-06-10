@@ -4,7 +4,7 @@ import cors from "cors";
 import { config } from "dotenv";
 import { corsOptions } from "./middlewares/corsMiddleware";
 import { serviceRateLimite } from "./middlewares/rateLimitMiddleware";
-import { userServiceRouter } from "./routes/userEmailRoutes";
+import { userServiceRouter } from "./routes/userServiceRouter";
 import { ErrorHandlerMiddleware } from "./middlewares/errorMiddleware";
 import { UserContactRouter } from "./routes/userContact";
 export const app: Application = express();

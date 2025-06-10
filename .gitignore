@@ -50,3 +50,4 @@ coverage/
 # Configurações específicas do pnpm
 .pnpm-debug.log
 index.html
+/src/generated/prisma

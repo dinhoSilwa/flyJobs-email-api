@@ -9,3 +9,5 @@ userServiceRouter.post(
   zodMiddleware(UserServiceSchema),
   UserServiceController.startSendEmailService,
 );
+
+userServiceRouter.get("/services", UserServiceController.getAllServices);
