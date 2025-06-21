@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import rateLimit, { Options } from "express-rate-limit";
-import { RateExpires } from "../erros/customsErrorsApi";
+import { RateExpires } from "../errors/customsErrorsApi";
 
 /**
  * Cria um middleware de rate limit padrão

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ZodSchema } from "zod";
 import { zodFormatError } from "../utils/zodFormatError";
-import { ZodErrors } from "../erros/customsErrorsApi";
+import { ZodErrors } from "../errors/customsErrorsApi";
 
 export const zodMiddleware = (schema: ZodSchema) => {
   return (req: Request, res: Response, next: NextFunction) => {
