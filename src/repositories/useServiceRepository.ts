@@ -1,6 +1,6 @@
 import { IUserService } from "../@types/IUserService";
 import { IUserServiceRepository } from "../interfaces/IUserServiceRepository";
-import { EmailError } from "../erros/customsErrorsApi";
+import { EmailError } from "../errors/customsErrorsApi";
 import { createUserServiceTransporter } from "../emails/serviceResend";
 import { prisma } from "../db/prisma";
 

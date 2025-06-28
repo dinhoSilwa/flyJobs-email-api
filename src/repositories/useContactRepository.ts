@@ -1,6 +1,6 @@
 import { IUserContact } from "../@types/IUserContact";
 import { createUserContactTransporter } from "../emails/contactResend";
-import { EmailError } from "../erros/customsErrorsApi";
+import { EmailError } from "../errors/customsErrorsApi";
 import { IUserContactRepository } from "../interfaces/IUserContactRepository";
 
 export class ContactServiceRepository
