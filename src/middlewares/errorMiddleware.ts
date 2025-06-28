@@ -4,7 +4,7 @@ import {
   EmailError,
   RateExpires,
   ZodErrors,
-} from "../erros/customsErrorsApi";
+} from "../errors/customsErrorsApi";
 
 export const ErrorHandlerMiddleware: ErrorRequestHandler = (
   error: Error & CustomApiError,

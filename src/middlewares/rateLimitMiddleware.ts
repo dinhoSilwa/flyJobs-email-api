@@ -1,7 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import rateLimit, { Options } from "express-rate-limit";
-import { RateExpires } from "../erros/customsErrorsApi";
+import { RateExpires } from "../errors/customsErrorsApi";
 
+/**
+ * Cria um middleware de rate limit padrão
+ */
 export const createRateLimitMiddleware = (
   windowMs: number,
   max: number,
@@ -23,8 +26,12 @@ export const createRateLimitMiddleware = (
   });
 };
 
-export const serviceRateLimite = createRateLimitMiddleware(
-  10 * 60 * 1000,
-  50,
-  "Falha ao Requisitar Serviços",
-);
+const ativarRateLimit = process.env.NODE_ENV === "production";
+
+export const serviceRateLimite = ativarRateLimit
+  ? createRateLimitMiddleware(
+      10 * 60 * 1000, // 10 minutos
+      50, // 50 requisições
+      "Falha ao Requisitar Serviços",
+    )
+  : (req: Request, res: Response, next: NextFunction) => next(); // Desativa temporariamente

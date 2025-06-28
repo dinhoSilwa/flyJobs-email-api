@@ -16,4 +16,9 @@ export class UserServiceController {
       .status(200)
       .json({ status: "OK", msg: "Email de Serviço Enviado com Sucesso" });
   }
+
+  static async getAllServices(req: Request, res: Response): Promise<void> {
+    const services = await service.getAllServices();
+    res.status(200).json({ status: "OK", msg: "Acesso Autorizado", services });
+  }
 }
