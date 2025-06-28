@@ -30,7 +30,7 @@ export class TokenManager {
 
   public async generateToken(
     payload: JWTPayload,
-    expiresIn: string = process.env.NODE_ENV === "production" ? "8h" : "1h",
+    expiresIn: string = process.env.NODE_ENV === "production" ? "60s" : "7d",
   ): Promise<string> {
     const now = Math.floor(Date.now() / 1000);
 

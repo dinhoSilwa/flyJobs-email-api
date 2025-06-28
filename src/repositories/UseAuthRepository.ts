@@ -4,8 +4,17 @@ import { IUseAuthRepository } from "../interfaces/IUserAuth";
 import { HashPasswordManager } from "../utils/encrypt";
 import { AuthError } from "../errors/customsErrorsApi";
 import { TokenManager } from "../utils/TokenManager";
+import { JWTPayload } from "jose";
 
 export class UseAuthRepository implements IUseAuthRepository<IUserAuthSignup> {
+  me(): Promise<JWTPayload> {
+    try {
+      const authData = prisma.userAuth.findMany();
+      
+    } catch (error) {
+      console.log("deu erro");
+    }
+  }
   async signup(authData: IUserAuthSignup): Promise<void> {
     try {
       const { password } = authData;

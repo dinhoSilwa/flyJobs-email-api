@@ -2,6 +2,7 @@ import { Router } from "express";
 import { UserServiceController } from "../controllers/UserServiceController";
 import { zodMiddleware } from "../middlewares/validateMiddleware";
 import { UserServiceSchema } from "../schema/UserServiceSchema";
+import { AuthMidleware } from "../middlewares/authMiddleware";
 
 export const userServiceRouter = Router();
 userServiceRouter.post(
@@ -10,4 +11,8 @@ userServiceRouter.post(
   UserServiceController.startSendEmailService,
 );
 
-userServiceRouter.get("/services", UserServiceController.getAllServices);
+userServiceRouter.get(
+  "/services",
+  AuthMidleware,
+  UserServiceController.getAllServices,
+);
