@@ -2,17 +2,15 @@ import { IUserAuthLogin, IUserAuthSignup } from "../@types/IUserAuth";
 import { prisma } from "../db/prisma";
 import { IUseAuthRepository } from "../interfaces/IUserAuth";
 import { HashPasswordManager } from "../utils/encrypt";
-import { AuthError } from "../errors/customsErrorsApi";
+import { AuthError, UNAUTHORIZED } from "../errors/customsErrorsApi";
 import { TokenManager } from "../utils/TokenManager";
-import { JWTPayload } from "jose";
 
 export class UseAuthRepository implements IUseAuthRepository<IUserAuthSignup> {
-  me(): Promise<JWTPayload> {
+  async me(): Promise<void> {
     try {
-      const authData = prisma.userAuth.findMany();
-      
+      await prisma.userAuth.findMany();
     } catch (error) {
-      console.log("deu erro");
+      throw new UNAUTHORIZED("Erro ao Validar");
     }
   }
   async signup(authData: IUserAuthSignup): Promise<void> {
