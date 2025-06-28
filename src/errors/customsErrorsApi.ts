@@ -15,6 +15,19 @@ export class NotFound extends CustomApiError {
   }
 }
 
+export class BadRequest extends CustomApiError {
+  constructor(message: string) {
+    super(message, httpStatusCode.UNAUTHORIZED);
+  }
+}
+
+export class UNAUTHORIZED extends CustomApiError {
+  constructor(message: string) {
+    super(message, httpStatusCode.UNAUTHORIZED);
+  }
+}
+
+
 export class InvalidRecipient extends CustomApiError {
   constructor(message: string) {
     super(message, httpStatusCode.INVALID_RECIPIENT);
@@ -28,6 +41,17 @@ export class EmailError extends CustomApiError {
 }
 
 export class RateExpires extends CustomApiError {
+  constructor(message: string) {
+    super(message, httpStatusCode.UNAUTHORIZED);
+  }
+}
+export class AuthError extends CustomApiError {
+  constructor(message: string) {
+    super(message, httpStatusCode.UNAUTHORIZED);
+  }
+}
+
+export class TokenExpired extends CustomApiError {
   constructor(message: string) {
     super(message, httpStatusCode.UNAUTHORIZED);
   }
