@@ -1,0 +1,35 @@
+name: CI - Build e Testes
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Instalar dependências
+        run: |
+          npm install -g pnpm
+          pnpm install
+
+      - name: Gerar Prisma Client
+        run: pnpm prisma generate
+
+      - name: Build do projeto
+        run: pnpm run build
+
+      #- name: Testes
+      #  run: pnpm test
